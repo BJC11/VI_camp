@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cyber Ethics Interactive Organizer</title>
+  <style>
+    :root {
+      --primary-color: #004080;
+      --background-color: #ffffff;
+      --text-color: #000000;
+      --highlight-color: #e6f2ff;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: var(--background-color);
+      color: var(--text-color);
+      margin: 0;
+      padding: 20px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h1, h2 {
+      color: var(--primary-color);
+    }
+
+    .section {
+      margin-bottom: 2rem;
+    }
+
+    .interactive-item {
+      background-color: var(--highlight-color);
+      border-left: 5px solid var(--primary-color);
+      padding: 1em;
+      margin-bottom: 1rem;
+      cursor: pointer;
+    }
+
+    .info {
+      display: none;
+      margin-top: 0.5rem;
+      padding-left: 1rem;
+    }
+
+    .interactive-item:focus,
+    .interactive-item:hover {
+      outline: 2px solid var(--primary-color);
+    }
+  </style>
+</head>
+<body>
+  <main class="container" role="main">
+    <h1 id="page-title">Cyber Ethics Interactive Organizer</h1>
+
+    <section class="section" aria-labelledby="ethical-heading">
+      <h2 id="ethical-heading">Ethical Behavior</h2>
+
+      <div class="interactive-item" tabindex="0" onclick="toggleInfo('info1')">
+        Respecting Privacy
+        <div id="info1" class="info">This means not accessing, sharing, or using another person's data, messages, or photos without their explicit permission. Privacy is a fundamental right in the digital age.</div>
+      </div>
+
+      <div class="interactive-item" tabindex="0" onclick="toggleInfo('info2')">
+        Being Honest and Responsible Online
+        <div id="info2" class="info">This involves using truthful identities, avoiding scams or impersonation, and taking responsibility for your digital footprint and actions online.</div>
+      </div>
+
+      <div class="interactive-item" tabindex="0" onclick="toggleInfo('info3')">
+        Reporting Security Risks
+        <div id="info3" class="info">If you find a vulnerability or suspicious activity, it’s ethical to report it to the appropriate person or authority instead of exploiting it for personal gain.</div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="unethical-heading">
+      <h2 id="unethical-heading">Unethical Behavior</h2>
+
+      <div class="interactive-item" tabindex="0" onclick="toggleInfo('info4')">
+        Hacking Without Permission
+        <div id="info4" class="info">Gaining unauthorized access to systems or accounts is illegal and unethical. Even if no damage is done, it violates privacy and trust.</div>
+      </div>
+
+      <div class="interactive-item" tabindex="0" onclick="toggleInfo('info5')">
+        Cyberbullying and Spreading False Info
+        <div id="info5" class="info">Using digital tools to harass, intimidate, or spread misinformation can cause real-world harm. Respectful and truthful communication is essential online.</div>
+      </div>
+
+      <div class="interactive-item" tabindex="0" onclick="toggleInfo('info6')">
+        Stealing Digital Content
+        <div id="info6" class="info">Downloading or distributing copyrighted music, movies, software, or books without permission is theft. Always use legal sources and pay creators for their work.</div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function toggleInfo(id) {
+      const infoBox = document.getElementById(id);
+      const isVisible = infoBox.style.display === 'block';
+      infoBox.style.display = isVisible ? 'none' : 'block';
+    }
+  </script>
+</body>
+</html>
