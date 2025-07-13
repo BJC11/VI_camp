@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cyber Careers Chat Challenge</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #2c2f33;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+    .log-container {
+      background-color: #23272a;
+      border-radius: 10px;
+      padding: 20px;
+      max-width: 600px;
+      width: 100%;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+    .chat {
+      background-color: #2f3136;
+      padding: 15px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+    .username {
+      color: #7289da;
+      font-weight: bold;
+    }
+    .options button {
+      background-color: #7289da;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      margin: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .options button:hover {
+      background-color: #5b6eae;
+    }
+    #feedback {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    #passphrase {
+      margin-top: 20px;
+      font-size: 1.2em;
+      color: #43b581;
+    }
+  </style>
+</head>
+<body>
+  <div class="log-container">
+    <div class="chat" id="chat"></div>
+    <div class="options">
+      <button onclick="checkAnswer('Penetration Tester')">Penetration Tester</button>
+      <button onclick="checkAnswer('Cybersecurity Analyst')">Cybersecurity Analyst</button>
+      <button onclick="checkAnswer('Incident Responder')">Incident Responder</button>
+    </div>
+    <div id="feedback"></div>
+    <div id="passphrase"></div>
+  </div>
+
+  <audio id="correctSound" src="https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg"></audio>
+  <audio id="wrongSound" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg"></audio>
+
+  <script>
+    const logs = [
+      {
+        chat: `<span class="username">NOVA</span>: Just finished simulating a phishing attack on our internal network. 3 people clicked. Reporting the results now.<br>
+               <span class="username">Talon</span>: That's solid work. Helps us prep training next week.<br>
+               <em><strong>[Hint]</strong>: The person is hired to test company defenses by simulating real-world attacks.</em>`,
+        answer: 'Penetration Tester'
+      },
+      {
+        chat: `<span class="username">Trace</span>: The SIEM flagged a spike in outbound traffic from finance servers. Investigating possible exfil.<br>
+               <span class="username">ByteWolf</span>: Good eye, Trace. Let’s pull logs from 3 AM onward.<br>
+               <em><strong>[Hint]</strong>: This person monitors systems daily, analyzing threats and writing detailed reports.</em>`,
+        answer: 'Cybersecurity Analyst'
+      },
+      {
+        chat: `<span class="username">Jinx</span>: Confirmed ransomware in the east office network. Isolating the affected machines.<br>
+               <span class="username">Zero</span>: Alert the team, I'll start the incident report.<br>
+               <em><strong>[Hint]</strong>: They are trained to respond fast when systems are under attack.</em>`,
+        answer: 'Incident Responder'
+      },
+      {
+        chat: `<span class="username">Nyx</span>: Testing an exploit against our cloud-based VPN before deployment.<br>
+               <span class="username">Sprocket</span>: Let me know if it passes. We need that security hardening done by Friday.<br>
+               <em><strong>[Hint]</strong>: They search for weaknesses before attackers can exploit them.</em>`,
+        answer: 'Penetration Tester'
+      }
+    ];
+
+    let current = 0;
+    const chatElement = document.getElementById('chat');
+    const feedbackElement = document.getElementById('feedback');
+    const passphraseElement = document.getElementById('passphrase');
+    const correctSound = document.getElementById('correctSound');
+    const wrongSound = document.getElementById('wrongSound');
+
+    function loadChat() {
+      chatElement.innerHTML = logs[current].chat;
+      feedbackElement.innerText = '';
+    }
+
+    function checkAnswer(choice) {
+      if (choice === logs[current].answer) {
+        correctSound.play();
+        feedbackElement.innerText = 'Correct!';
+        feedbackElement.style.color = '#43b581';
+        current++;
+        if (current < logs.length) {
+          setTimeout(loadChat, 1000);
+        } else {
+          passphraseElement.innerText = 'Passphrase: CYBER-FUTURE-2025';
+        }
+      } else {
+        wrongSound.play();
+        feedbackElement.innerText = 'Incorrect. Try again.';
+        feedbackElement.style.color = '#f04747';
+      }
+    }
+
+    loadChat();
+  </script>
+</body>
+</html>
